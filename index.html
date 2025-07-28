@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nineva Cine</title>
+    <!-- Favicon: Using SVG emoji for the movie icon. More concise and no external files needed. -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+
+    <!-- Description and Keywords for SEO -->
+    <meta name="description" content="Nineva Cine: Stream thousands of free movies and TV series online in HD quality. Discover the latest blockbusters, classic films, and popular TV shows with no subscription required. Your ultimate destination for unlimited entertainment, available on any device. Start watching now!">
+    <meta name="keywords" content="Nineva Cine, free movies, watch movies online, free TV series, stream TV shows, HD streaming, latest movies, popular TV series, no subscription, free entertainment, online cinema, movie streaming site, TV show streaming, watch films, full HD movies, free streaming platform, best free movies, watch series online, online entertainment, movie database, TV show database">
+
+    <!-- Open Graph Meta Tags for Facebook, WhatsApp, etc. -->
+    <meta property="og:title" content="Nineva Cine">
+    <meta property="og:description" content="Nineva Cine: Stream thousands of free movies and TV series online in HD quality. Discover the latest blockbusters, classic films, and popular TV shows with no subscription required. Your ultimate destination for unlimited entertainment, available on any device. Start watching now!">
+    <meta property="og:image" content="https://live.staticflickr.com/65535/54636134544_2e2fb234c8_b.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://nineva-cine.pages.dev/">
+    <meta property="og:type" content="website">
+    <meta property="fb:app_id" content="61577842845885">
+
+    <!-- Canonical Tag for SEO -->
+    <link rel="canonical" href="https://nineva-cine.pages.dev/">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* CSS to ensure the default Blogger header is hidden and the custom header is fixed */
+        html, body {
+            height: 100%; /* Important for fixed positioning */
+            min-height: 100vh; /* Fallback and ensures full viewport height */
+            overflow-x: hidden; /* Prevents horizontal scrolling */
+            margin: 0 !important; /* Removes default Blogger margin */
+            padding: 0 !important; /* Removes default Blogger padding */
+            background-color: #1a202c !important; /* Ensures background color matches custom theme */
+            display: flex; /* Uses flexbox for the body */
+            flex-direction: column; /* Arranges flex items in a column */
+            align-items: center; /* Centers items horizontally */
+            font-family: 'Roboto', sans-serif; /* Uses Roboto font */
+        }
+        
+        /* Targets and hides default Blogger elements that might appear */
+        #navbar-iframe, /* Blogger navbar iframe */
+        .navbar,
+        .blogger-navbar,
+        #b-navbar,
+        .admin-bar-menu,
+        .blog-admin-bar,
+        .header-outer, /* Blogger header element from your provided CSS */
+        .Header, /* Main header class from your provided CSS */
+        /* Targets elements that might show duplicate "MovieHub USA" outside the main header */
+        .name,
+        .title,
+        .blog-name-title,
+        #Header1_header_text, /* Common ID for blog title widget in Blogger */
+        .blog-title-container,
+        h1.title,
+        .blog-name,
+        .titlewrapper, /* Title wrapper in Blogger template */
+        .descriptionwrapper, /* Description wrapper in Blogger template */
+        /* Adds common Blogger footer elements */
+        #footer-outer,
+        .footer-outer,
+        #footer,
+        .footer-section,
+        .feed-links,
+        .blog-pager,
+        .attribution, /* Usually contains "Powered by Blogger" */
+        .post-footer, /* Might have a footer in each post */
+        .Blog .feed-links,
+        .widget.Footer,
+        #BlogArchive1_bottom, /* Example ID for archive widget in footer */
+        #Attribution1 /* Example ID for attribution widget in footer */
+        {
+            display: none !important;
+            height: 0 !important;
+            visibility: hidden !important;
+            line-height: 0 !important;
+            font-size: 0 !important;
+            width: 0 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border: none !important; /* Removes any border that might form lines */
+        }
+
+        /* Adds rules for common Blogger elements that might have a background */
+        #outer-wrapper,
+        .content-outer,
+        .main-outer,
+        .main-inner,
+        .region-inner {
+            background-color: #1a202c !important;
+            margin: 0 !important; /* Ensures no margin creating gaps */
+            padding: 0 !important; /* Ensures no padding creating gaps */
+        }
+
+        /* Ensures the custom header remains fixed and sets its internal layout */
+        header {
+            position: sticky !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important; /* Updated: Full width */
+            z-index: 50; /* Ensures it's above other content */
+            background-color: #1a202c !important; /* Ensures header has a dark background */
+            box-sizing: border-box; /* Ensures padding doesn't increase width */
+            padding-bottom: 1.25rem !important; /* Changed to 1.25rem */
+            padding-top: 1.25rem !important; /* Top padding for header top part */
+        }
+
+        /* Styles for the top part of the header container (logo, navigation, search) */
+        /* Removed custom CSS for .header-top-row to rely on Tailwind classes */
+
+        /* Styles for the genre buttons container (now part of the header) */
+        .genre-buttons-container { /* Uses existing class, not fixed/top */
+            width: 100%;
+            background-color: #1a202c !important; /* Matches main header background color */
+            padding: 1rem; /* p-4 */
+            border-top: 1px solid rgba(255, 255, 255, 0.1); /* Visual separation line */
+        }
+        /* Ensures main content starts right after the header */
+        main {
+            margin-top: 0 !important;
+            padding-top: 2rem !important; /* Changed to 2rem */
+            width: 100%; /* Updated: Full width */
+            margin-left: auto !important; /* Centers main content */
+            margin-right: auto !important; /* Centers main content */
+        }
+
+        /* Adjust font size and padding for nav button to match genre button */
+        .nav-button {
+            font-size: 0.875rem; /* text-sm */
+            padding-left: 1rem; /* px-4 */
+            padding-right: 1rem; /* px-4 */
+            padding-top: 0.5rem; /* py-2 */
+            padding-bottom: 0.5rem; /* py-2 */
+        }
+        /* Adjust font size for medium and up screens to remain large like genre button */
+        @media (min-width: 768px) {
+            .nav-button {
+                font-size: 1rem; /* md:text-base */
+            }
+        }
+
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2d3748; /* bg-gray-800 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4a5568; /* bg-gray-600 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280; /* bg-gray-500 */
+        }
+
+        /* Hide elements by default for layers */
+        .layer-2, .layer-3, .layer-4 { /* Added .layer-4 */
+            display: none;
+        }
+
+        /* Ensures iframe fills its container responsively */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 0.5rem; /* rounded-lg */
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Basic spinner for loading */
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid #f97316; /* Orange-500 */
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Rainbow text style */
+        .rainbow-text {
+            background-image: linear-gradient(to right, violet, indigo, blue, green, yellow, orange, red);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent; /* Makes text color transparent for gradient to show */
+            display: inline-block; /* Important for background-clip to work correctly */
+            font-size: 52px; /* Changed from 5xl (3rem) to 52px */
+        }
+
+        /* FIX: Ensures detail title is visible in Blogger */
+        #detail-title {
+            display: block !important;
+            visibility: visible !important;
+            height: auto !important;
+            font-size: 3rem !important; /* Increased from 2.25rem (text-4xl) to 3rem (text-5xl) */
+            line-height: normal !important;
+            margin: 0 0 0.5rem 0 !important; /* Adjust margin as needed */
+        }
+
+        /* Style for static movie cards in Layer 3 */
+        .static-movie-card {
+            background-color: #1f2937; /* bg-gray-800 */
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+            overflow: hidden;
+            transform: scale(1);
+            transition: all 0.3s ease-in-out; /* transition-all duration-300 */
+            cursor: pointer;
+        }
+
+        .static-movie-card:hover {
+            transform: scale(1.05); /* hover:scale-105 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* hover:shadow-xl */
+        }
+
+        .static-movie-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-top-left-radius: 0.5rem;
+            border-top-right-radius: 0.5rem;
+        }
+
+        .static-movie-card .info {
+            padding: 1rem; /* p-4 */
+            text-align: center; /* Changed to center */
+        }
+
+        .static-movie-card h3 {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* font-semibold */
+            color: #f9fafb; /* text-gray-100 */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 0.25rem;
+        }
+
+        .static-movie-card p {
+            font-size: 0.875rem; /* text-sm */
+            color: #9ca3af; /* text-gray-400 */
+        }
+
+        /* CSS to remove underline from home logo link */
+        #home-logo-link {
+            text-decoration: none; /* Removes default underline */
+        }
+        #home-logo-link:hover {
+            text-decoration: none; /* Ensures no underline on hover */
+        }
+
+        /* Styling for Layer 4 SEO content */
+        .layer-4 { /* Target the section, not the inner content div */
+            background-color: #1f2937; /* bg-gray-800 */
+            padding: 2rem; /* p-8, or adjust as needed */
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            color: #e2e8f0; /* text-gray-200 */
+            line-height: 1.6;
+            position: relative; /* Ensure absolute positioning of back button works */
+            width: 100%; /* Ensure it takes full width of its parent (main) */
+        }
+
+        .layer-4-content { /* This is the inner div for the text */
+            /* Removed max-width and margin: auto to allow it to expand within the section's padding */
+        }
+
+        .layer-4-content h1, .layer-4-content h2, .layer-4-content h3 {
+            color: #f9fafb; /* text-gray-100 */
+            font-weight: 700; /* font-bold */
+            margin-bottom: 1rem;
+        }
+
+        .layer-4-content h1 {
+            font-size: 2.5rem; /* text-4xl */
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .layer-4-content h2 {
+            font-size: 2rem; /* text-3xl */
+            margin-top: 2rem;
+        }
+
+        .layer-4-content h3 {
+            font-size: 1.5rem; /* text-2xl */
+            margin-top: 1.5rem;
+        }
+
+        .layer-4-content p {
+            margin-bottom: 1rem;
+            text-align: justify; /* Added for justified text */
+        }
+
+        .layer-4-content ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .layer-4-content ol {
+            list-style-type: decimal;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .layer-4-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .layer-4-content strong {
+            color: #cbd5e1; /* text-gray-300 */
+        }
+
+        .layer-4-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.5rem;
+            margin: 1.5rem auto;
+            display: block;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 min-h-screen flex flex-col">
+
+    <!-- Header (Fixed) - Now integrated with genre buttons -->
+    <header class="sticky top-0 z-50 bg-gray-900 shadow-lg px-4 md:px-8 flex flex-col items-center rounded-b-lg">
+        <!-- Header Top Part: Logo, Navigation and Search -->
+        <div class="flex flex-col sm:flex-row items-center justify-between w-full py-4">
+            <div class="flex items-center mb-4 sm:mb-0">
+                <!-- Logo (simple text) - Now wrapped in an anchor tag to act as a Home button -->
+                <a href="https://nineva-cine.pages.dev/" id="home-logo-link" class="inline-flex items-center text-indigo-500 hover:text-indigo-400 transition-colors duration-200">
+                <span class="text-3xl font-bold mr-2">🎬</span>
+                <h1 class="text-5xl font-bold whitespace-nowrap rainbow-text">Nineva Cine</h1>
+                </a>
+            </div>
+            <nav class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-6 w-full sm:w-auto">
+                <div class="flex w-full sm:w-auto sm:space-x-6">
+                    <!-- New Home Button -->
+                    <button id="nav-home-button" class="nav-button bg-gray-800 hover:bg-green-600 rounded-md text-gray-100 font-medium w-full sm:w-auto text-sm md:text-base transition-all duration-200">Home</button>
+                    <button id="nav-movies-button" class="nav-button bg-gray-800 hover:bg-blue-600 rounded-md text-gray-100 font-medium w-full sm:w-auto text-sm md:text-base transition-all duration-200">Movies</button>
+                    <button id="nav-tvseries-button" class="nav-button bg-gray-800 hover:bg-rose-600 rounded-md text-gray-100 font-medium w-full sm:w-auto text-sm md:text-base transition-all duration-200">TV Series</button>
+                </div>
+                <div class="relative w-full sm:w-64">
+                    <input type="text" id="search-input" placeholder="Search movies..." class="w-full bg-gray-700 text-gray-200 placeholder-gray-400 py-2 pl-4 pr-10 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200">
+                    <button id="search-button" class="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-200 transition-colors duration-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                </div>
+            </nav>
+        </div>
+        <!-- Removed Genre Filter Buttons -->
+    </header>
+
+    <main class="flex-grow px-4 py-12 max-w-screen-xl mx-auto">
+        <!-- Layer 1: Movie/TV Thumbnails -->
+        <section id="layer-1" class="layer-1">
+            <!-- Romance Movies Section - Now at the top -->
+            <div id="romance-movies-section" class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-100 mb-8 text-center"><span id="section-title-romance-movies">Romance Movies</span></h2>
+                <div id="movie-grid-romance-movies" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 min-h-[500px]">
+                    <!-- Romance Movie thumbnails will be loaded here by JS -->
+                </div>
+                <div class="flex justify-center mt-10">
+                    <button id="load-more-romance-movies" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Load More
+                    </button>
+                </div>
+                <div id="loading-spinner-romance-movies" class="hidden flex justify-center items-center py-8">
+                    <div class="spinner"></div>
+                </div>
+                <p id="no-results-message-romance-movies" class="hidden text-center text-gray-400 text-lg mt-8">No results found for your search.</p>
+            </div>
+
+            <!-- Now Playing Movies Section (will also serve as search results and TV series default) -->
+            <div id="now-playing-section" class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-100 mb-8 text-center"><span id="section-title-now-playing">Now Playing Movies</span></h2>
+                <div id="movie-grid-now-playing" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 min-h-[500px]">
+                    <!-- Now Playing Movie thumbnails will be loaded here by JS -->
+                </div>
+                <div class="flex justify-center mt-10">
+                    <button id="load-more-now-playing" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Load More
+                    </button>
+                </div>
+                <div id="loading-spinner-now-playing" class="hidden flex justify-center items-center py-8">
+                    <div class="spinner"></div>
+                </div>
+                <p id="no-results-message-now-playing" class="hidden text-center text-gray-400 text-lg mt-8">No results found for your search.</p>
+            </div>
+
+            <!-- Top Rated Movies Section -->
+            <div id="top-rated-section" class="mb-12">
+                <h2 class="text-3xl font-bold text-gray-100 mb-8 text-center"><span id="section-title-top-rated">Top Rated Movies</span></h2>
+                <div id="movie-grid-top-rated" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 min-h-[500px]">
+                    <!-- Top Rated Movie thumbnails will be loaded here by JS -->
+                </div>
+                <div class="flex justify-center mt-10">
+                    <button id="load-more-top-rated" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Load More
+                    </button>
+                </div>
+                <div id="loading-spinner-top-rated" class="hidden flex justify-center items-center py-8">
+                    <div class="spinner"></div>
+                </div>
+                <p id="no-results-message-top-rated" class="hidden text-center text-gray-400 text-lg mt-8">No results found for your search.</p>
+            </div>
+        </section>
+
+        <!-- Layer 2: Movie/TV Detail -->
+        <section id="layer-2" class="layer-2 bg-gray-800 p-6 md:p-8 rounded-lg shadow-xl relative">
+            <button id="back-to-list-button" class="absolute top-4 left-4 bg-gray-700 hover:bg-gray-600 text-gray-200 p-2 rounded-full shadow-md transition-colors duration-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            </button>
+            <!-- Loading spinner for Layer 2 -->
+            <div id="loading-spinner-layer2" class="flex justify-center items-center h-96">
+                <div class="spinner"></div>
+            </div>
+            <div id="movie-detail-content" class="hidden">
+                <!-- Content will be dynamically loaded here by JS -->
+            </div>
+
+            <div class="video-container mb-8">
+                <iframe id="detail-trailer" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4">
+                <!-- Stream 1 Button (vidsrc.me) -->
+                <button id="stream-1-button" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                    Stream 1
+                </button>
+                <!-- Stream 2 Button (vidsrc.to) -->
+                <button id="stream-2-button" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Stream 2
+                </button>
+            </div>
+
+            <!-- Similar Movie Recommendations -->
+            <div class="mt-8 text-center">
+                <h3 class="text-2xl font-bold text-gray-100 mb-4">Similar Titles You Might Like:</h3>
+                <div id="similar-movies-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                    <!-- Similar movie thumbnails will be loaded here by JS -->
+                </div>
+                <div id="loading-spinner-similar" class="hidden flex justify-center items-center py-8">
+                    <div class="spinner"></div>
+                </div>
+                <p id="no-similar-results-message" class="hidden text-center text-gray-400 text-lg mt-8">No similar titles found.</p>
+            </div>
+        </section>
+
+        <!-- Layer 3: Streaming Player -->
+        <section id="layer-3" class="layer-3 bg-gray-900 p-4 md:p-8 rounded-lg shadow-xl flex flex-col">
+            <button id="back-to-detail-button" class="bg-gray-700 hover:bg-gray-600 text-gray-200 p-2 rounded-full shadow-md mb-4 self-start transition-colors duration-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            </button>
+            <!-- Loading spinner for Layer 3 -->
+            <div id="loading-spinner-layer3" class="flex justify-center items-center flex-grow">
+                <div class="spinner"></div>
+            </div>
+            <div class="flex-grow video-container" id="streaming-player-container">
+                <iframe id="streaming-player" src="" frameborder="0" allowfullscreen class="rounded-lg"></iframe>
+            </div>
+            <!-- Direct streaming buttons added -->
+            <div class="flex flex-wrap justify-center gap-4 mt-6">
+                <button id="stream-3-button" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                    Stream 3
+                </button>
+                <button id="stream-4-button" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-xl transform hover:scale-105 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Stream 4
+                </button>
+            </div>
+
+            <!-- Static thumbnails added here (moved from Layer 2) -->
+            <div class="mt-8 text-center">
+                <h3 class="text-xl font-bold text-gray-100 mb-4">You Might Also Like This:</h3>
+                <div id="static-movie-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+                    <!-- Static Movie Card: Nineva Cine (Placeholder for consistent size) -->
+                    <div class="static-movie-card" data-media-id="0" data-media-type="site">
+                        <img src="https://live.staticflickr.com/65535/54684099356_c38518e79a.jpg" alt="[Gambar Poster Situs Nineva Cine]" loading="lazy" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=IMAGE+ERROR';">
+                        <div class="info">
+                            <h3>Nineva Cine</h3>
+                            <p>Site</p>
+                        </div>
+                    </div>
+                    <!-- Static Movie Card: 3-D Sex and Zen: Extreme Ecstasy (2011) -->
+                    <div class="static-movie-card" data-media-id="67308" data-media-type="movie">
+                        <img src="https://image.tmdb.org/t/p/w300/jjADiLOmCoXoVldQYrNR9bdAWA0.jpg" alt="[Gambar Poster 3-D Sex and Zen: Extreme Ecstasy (2011)]" loading="lazy" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=IMAGE+ERROR';">
+                        <div class="info">
+                            <h3>3-D Sex and Zen: Extreme Ecstasy</h3>
+                            <p>2011</p>
+                        </div>
+                    </div>
+                    <!-- Static Movie Card: Fidelity (2019) -->
+                    <div class="static-movie-card" data-media-id="575299" data-media-type="movie">
+                        <img src="https://image.tmdb.org/t/p/w300/kDaRVADrrbwNSGzCvU4AroEa6h1.jpg" alt="[Gambar Poster Fidelity (2019)]" loading="lazy" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=IMAGE+ERROR';">
+                        <div class="info">
+                            <h3>Fidelity</h3>
+                            <p>2019</p>
+                        </div>
+                    </div>
+                    <!-- Static Movie Card: Killing Me Softly (2002) -->
+                    <div class="static-movie-card" data-media-id="14365" data-media-type="movie">
+                        <img src="https://image.tmdb.org/t/p/w300/pgfFJw7mqAmJdZizrJ6oOK0ejOZ.jpg" alt="[Gambar Poster Killing Me Softly (2002)]" loading="lazy" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=IMAGE+ERROR';">
+                        <div class="info">
+                            <h3>Killing Me Softly</h3>
+                            <p>2002</p>
+                        </div>
+                    </div>
+                    <!-- Static Movie Card: They Are Mine (2023) -->
+                    <div class="static-movie-card" data-media-id="1180449" data-media-type="movie">
+                        <img src="https://image.tmdb.org/t/p/w300/66kzlgGMp9lKUiBjjPPYG0r8Z03.jpg" alt="[Gambar Poster They Are Mine (2023)]" loading="lazy" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=IMAGE+ERROR';">
+                        <div class="info">
+                            <h3>They Are Mine</h3>
+                            <p>2023</p>
+                        </div>
+                    </div>
+                    <!-- Static Movie Card: Hate Story 2 (2014) -->
+                    <div class="static-movie-card" data-media-id="282346" data-media-type="movie">
+                        <img src="https://image.tmdb.org/t/p/w300/y5fg6O5ttxvh2wkMY1fUchLfZSL.jpg" alt="[Gambar Poster Hate Story 2 (2014)]" loading="lazy" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=IMAGE+ERROR';">
+                        <div class="info">
+                            <h3>Hate Story 2</h3>
+                            <p>2014</p>
+                        </div>
+                    </div>
+                    <!-- Static Movie Card: Cashback (2006) -->
+                    <div class="static-movie-card" data-media-id="12225" data-media-type="movie">
+                        <img src="https://image.tmdb.org/t/p/w300/juTJZCgNwcEeKtrxC6EygC2mKfJ.jpg" alt="[Gambar Poster Cashback (2006)]" loading="lazy" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=IMAGE+ERROR';">
+                        <div class="info">
+                            <h3>Cashback</h3>
+                            <p>2006</p>
+                        </div>
+                    </div>
+                    <!-- Static Movie Card: Room in Rome (2010) -->
+                    <div class="static-movie-card" data-media-id="48650" data-media-type="movie">
+                        <img src="https://image.tmdb.org/t/p/w300/qQ8ithmufWYz0OzJbE2YuAn3Qaj.jpg" alt="[Gambar Poster Room in Rome (2010)]" loading="lazy" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=IMAGE+ERROR';">
+                        <div class="info">
+                            <h3>Room in Rome</h3>
+                            <p>2010</p>
+                        </div>
+                    </div>
+                    <!-- Static Movie Card: Fifty Shades Freed (2018) -->
+                    <div class="static-movie-card" data-media-id="337167" data-media-type="movie">
+                        <img src="https://image.tmdb.org/t/p/w300/9ZedQHPQVveaIYmDSTazhT3y273.jpg" alt="[Gambar Poster Fifty Shades Freed (2018)]" loading="lazy" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=IMAGE+ERROR';">
+                        <div class="info">
+                            <h3>Fifty Shades Freed</h3>
+                            <p>2018</p>
+                        </div>
+                    </div>
+                    <!-- Static Movie Card: Jan Dara (2001) -->
+                    <div class="static-movie-card" data-media-id="68507" data-media-type="movie">
+                        <img src="https://image.tmdb.org/t/p/w300/vE9h8C2FiOLXwli7NsTcn2MyWm6.jpg" alt="[Gambar Poster Jan Dara (2001)]" loading="lazy" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=IMAGE+ERROR';">
+                        <div class="info">
+                            <h3>Jan Dara</h3>
+                            <p>2001</p>
+                        </div>
+                    </div>
+                    <!-- New Static Movie Card: Hotel Desire (2011) - Re-added with new image and position -->
+                    <div class="static-movie-card" data-media-id="82023" data-media-type="movie">
+                        <img src="https://image.tmdb.org/t/p/w300/myzQj8Rk178DrWsiZjVKjz7Kj9P.jpg" alt="[Gambar Poster Hotel Desire (2011)]" loading="lazy" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=IMAGE+ERROR';">
+                        <div class="info">
+                            <h3>Hotel Desire</h3>
+                            <p>2011</p>
+                        </div>
+                    </div>
+                    <!-- New Static Movie Card: When Night is Falling (1995) -->
+                    <div class="static-movie-card" data-media-id="8391" data-media-type="movie">
+                        <img src="https://image.tmdb.org/t/p/w300/6Ac5GLwJ01uli5mCXqXwquR36Y1.jpg" alt="[Gambar Poster When Night is Falling (1995)]" loading="lazy" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=IMAGE+ERROR';">
+                        <div class="info">
+                            <h3>When Night is Falling</h3>
+                            <p>1995</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Layer 4: SEO Content -->
+        <section id="layer-4" class="layer-4 px-4 py-12">
+            <button id="back-from-seo-button" class="absolute top-4 left-4 bg-gray-700 hover:bg-gray-600 text-gray-200 p-2 rounded-full shadow-md transition-colors duration-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            </button>
+            <div id="seo-content" class="layer-4-content">
+                <!-- SEO content will be injected here by JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full mx-auto mt-12 py-8 bg-gray-900 text-gray-400 text-center text-sm border-t border-gray-700 rounded-t-lg">
+        <div class="container mx-auto px-4">
+            <p>&copy; <span id="current-year"></span> Nineva Cine. All rights reserved.</p>
+            <p class="mt-2">
+                <a href="#" class="hover:text-white transition-colors duration-200">Privacy Policy</a> | 
+                <a href="#" class="hover:text-white transition-colors duration-200">Terms of Service</a> | 
+                <a href="#" class="hover:text-white transition-colors duration-200">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+
+    <script type="module">
+        // TMDB API Key
+        const TMDB_API_KEY = '92d8deed10d8735da58f6777deee8a74';
+        const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
+        const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'; 
+        const TMDB_PROFILE_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w185'; 
+
+        // Page counters for each section
+        const pageCounters = {
+            'now-playing': 1,
+            'top-rated': 1,
+            'romance-movies': 1,
+            'search': 1 // For search results
+        };
+
+        let currentSearchQuery = '';
+        let currentGenreId = null; 
+        let currentMediaId = null; 
+        let currentImdbId = null;
+        let currentMediaType = 'movie'; // Default: 'movie'
+
+        // Adsterra Direct Ad URLs - Using 8 example direct links
+        const ADSTERRA_DIRECT_LINKS = [
+            'https://discreetisabella.com/x818nj48?key=db0a9d9fa9d81626b459383a7bdc33ee',
+            'https://discreetisabella.com/gd8bwkyj?key=d2d35cf16f521bf5e9accfdd865dae8f',
+            'https://discreetisabella.com/paij3re0by?key=fa60f72b73c05d987bd978f83a6deaa8',
+            'https://discreetisabella.com/gh4tkda15?key=080742d09d4b5234a4fdaa773e48ebd4',
+            'https://discreetisabella.com/u1ipxidjif?key=bf544685cc418fde38d3de4391de6fee',
+            'https://discreetisabella.com/nu4ravi1cx?key=4d0556009c2d17968977e235d5de925a',
+            'https://discreetisabella.com/wdhedf2wx?key=a2c98838af4390b59e8b7aaaea3f1660',
+            'https://discreetisabella.com/yed8kj7bvw?key=b7830767455354f8e097df2a9e0f040c',
+            'https://discreetisabella.com/w2sw8zgx21?key=d34ca1378210247721e98e65d20b3693',
+            'https://discreetisabella.com/qn92sfcb?key=a8333f15c6bba15e367a5456f691547c',
+            'https://discreetisabella.com/rz2xzbfm?key=8c4045c97068010d84c3f1002e82b1c9'
+        ];
+        let currentAdLinkIndex = 0; // To rotate through the direct links
+
+        // Function to get the next Adsterra direct link in rotation
+        function getNextAdLink() {
+            const link = ADSTERRA_DIRECT_LINKS[currentAdLinkIndex];
+            currentAdLinkIndex = (currentAdLinkIndex + 1) % ADSTERRA_DIRECT_LINKS.length; // Cycle through links
+            return link;
+        }
+
+        // Set to store media IDs for which an ad has already been triggered for the main grid
+        const adTriggeredMediaIds = new Set();
+        // New Set to store media IDs for which an ad has already been triggered for static cards
+        const staticAdTriggeredMediaIds = new Set();
+        // New Set for Home button ad tracking
+        const homeButtonAdTriggered = new Set();
+        // New Set for Layer 4 image ad tracking
+        const layer4ImageAdTriggered = new Set();
+
+        // DOM Elements
+        const layer1 = document.getElementById('layer-1');
+        const layer2 = document.getElementById('layer-2');
+        const layer3 = document.getElementById('layer-3');
+        const layer4 = document.getElementById('layer-4'); // New Layer 4
+        const backToListButton = document.getElementById('back-to-list-button');
+        const backToDetailButton = document.getElementById('back-to-detail-button');
+        const backFromSeoButton = document.getElementById('back-from-seo-button'); // New back button for Layer 4
+        const stream1Button = document.getElementById('stream-1-button');
+        const stream2Button = document.getElementById('stream-2-button'); 
+        const stream3Button = document.getElementById('stream-3-button');
+        const stream4Button = document.getElementById('stream-4-button');
+        const staticMovieGrid = document.getElementById('static-movie-grid'); // Get the static movie grid container
+        const similarMoviesGrid = document.getElementById('similar-movies-grid'); // Get the similar movies grid container
+        const loadingSpinnerSimilar = document.getElementById('loading-spinner-similar');
+        const noSimilarResultsMessage = document.getElementById('no-similar-results-message');
+
+
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+
+        const loadingSpinnerLayer2 = document.getElementById('loading-spinner-layer2');
+        const loadingSpinnerLayer3 = document.getElementById('loading-spinner-layer3');
+
+        const navHomeButton = document.getElementById('nav-home-button'); // New Home button
+        const navMoviesButton = document.getElementById('nav-movies-button');
+        const navTvSeriesButton = document.getElementById('nav-tvseries-button');
+
+        // Hardcoded strings for English
+        const TEXT_CONSTANTS = {
+            appTitle: "Nineva Cine",
+            metaDescription: "Nineva Cine: Stream thousands of free movies and TV series online in HD quality. Discover the latest blockbusters, classic films, and popular TV shows with no subscription required. Your ultimate destination for unlimited entertainment, available on any device. Start watching now!",
+            metaKeywords: "Nineva Cine, free movies, watch movies online, free TV series, stream TV shows, HD streaming, latest movies, popular TV series, no subscription, free entertainment, online cinema, movie streaming site, TV show streaming, watch films, full HD movies, free streaming platform, best free movies, watch series online, online entertainment, movie database, TV show database",
+            ogDescription: "Nineva Cine: Stream thousands of free movies and TV series online in HD quality. Discover the latest blockbusters, classic films, and popular TV shows with no subscription required. Your ultimate destination for unlimited entertainment, available on any device. Start watching now!",
+            homeButton: "Home", // New
+            moviesButton: "Movies",
+            tvSeriesButton: "TV Series",
+            searchMoviesPlaceholder: "Search movies...",
+            searchTvSeriesPlaceholder: "Search TV series...",
+            nowPlayingMovies: "Now Playing Movies", // New
+            topRatedMovies: "Top Rated Movies",     // New
+            romanceMovies: "Romance Movies",       // New
+            popularTvSeries: "Popular TV Series",
+            loadMoreButton: "Load More",
+            noResultsFound: "No results found for your search.",
+            posterNotAvailable: "POSTER NOT AVAILABLE",
+            imageError: "IMAGE ERROR",
+            titleNotAvailable: "Title Not Available",
+            yearNotAvailable: "Year Not Available",
+            noPoster: "No Poster",
+            castPrefix: "Cast: ",
+            plotNotAvailable: "No plot available.",
+            stream1Button: "Stream 1",
+            stream2Button: "Stream 2",
+            stream3Button: "Stream 3",
+            stream4Button: "Stream 4",
+            youMightAlsoLike: "You Might Also Like This:",
+            allRightsReserved: "All rights reserved.",
+            privacyPolicy: "Privacy Policy",
+            termsOfService: "Terms Of Service",
+            contactUs: "Contact Us",
+            errorTitle: "Error",
+            infoTitle: "Info",
+            failedToLoadMedia: "Failed to load media. Please try again later.",
+            failedToLoadDetails: "Failed to load media details. Please try again.",
+            noMediaSelected: "No media selected for streaming.",
+            imdbIdNotAvailable: "IMDb ID not available for streaming. Please try Stream 1.",
+            invalidMediaHash: "Invalid media hash, loading popular movies.",
+            notAvailable: "N/A",
+            similarTitles: "Similar Titles You Might Like:",
+            noSimilarTitles: "No similar titles found.",
+            year: "Year",
+            releaseDate: "Release Date",
+            director: "Director",
+            duration: "Duration",
+            userScore: "User Score",
+            contentRating: "Content Rating",
+            votes: "votes",
+            seasons: "seasons",
+            episodes: "episodes"
+        };
+
+        // Maps genre names to TMDB IDs - Only 10 requested genres (for Movies)
+        const fixedMovieGenres = {
+            "Action": 28,
+            "Adventure": 12,
+            "Comedy": 35,
+            "Crime": 80,
+            "Drama": 18,
+            "Fantasy": 14,
+            "Horror": 27,
+            "Mystery": 9648,
+            "Sci-Fi": 878,
+            "Thriller": 53,
+            "Romance": 10749 // Still needed for the dedicated Romance Movies section
+        };
+
+
+        // Dynamic TMDB endpoints based on media type
+        const mediaTypeEndpoints = {
+            movie: {
+                popular: '/movie/popular', // Kept for TV series fallback
+                now_playing: '/movie/now_playing', // New
+                top_rated: '/movie/top_rated',     // New
+                search: '/search/movie',
+                detail: '/movie/',
+                videos: '/movie/',
+                credits: '/movie/',
+                genre: '/discover/movie', // For genre-specific fetches
+                similar: '/movie/' // For similar movies
+            },
+            tv: {
+                popular: '/tv/popular',
+                search: '/search/tv',
+                detail: '/tv/',
+                videos: '/tv/',
+                credits: '/tv/',
+                similar: '/tv/' // For similar TV series
+            }
+        };
+
+        /**
+         * Converts text to a URL-friendly slug format.
+         * Example: "The Dark Knight" -> "the-dark-knight"
+         * @param {string} text - The text to slugify.
+         * @returns {string} - The text in slug format.
+         */
+        function slugify(text) {
+            return text
+                .toString()
+                .normalize('NFD') // Normalizes diacritics
+                .replace(/[\u0300-\u036f]/g, '') // Removes diacritics
+                .toLowerCase() // Converts to lowercase
+                .trim() // Trims leading/trailing whitespace
+                .replace(/\s+/g, '-') // Replaces spaces with hyphens
+                .replace(/[^\w-]+/g, '') // Removes all non-alphanumeric characters
+                .replace(/--+/g, '-'); // Replaces multiple hyphens with a single hyphen
+        }
+
+        // Function to show/hide layers
+        function showLayer(layerToShow) {
+            layer1.style.display = 'none';
+            layer2.style.display = 'none';
+            layer3.style.display = 'none';
+            layer4.style.display = 'none'; // Hide Layer 4 by default
+            layerToShow.style.display = 'block';
+            window.scrollTo(0, 0); // Scroll to top when changing layers
+        }
+
+        /**
+         * Displays a custom message box with translatable content.
+         * @param {string} titleKey - The key for the title in the TEXT_CONSTANTS object.
+         * @param {string} messageKey - The key for the message in the TEXT_CONSTANTS object.
+         * @param {Object} [replacements={}] - Optional object for string replacements in the message.
+         */
+        function showMessageBox(titleKey, messageKey, replacements = {}) {
+            let title = TEXT_CONSTANTS[titleKey] || titleKey;
+            let message = TEXT_CONSTANTS[messageKey] || messageKey;
+
+            for (const key in replacements) {
+                message = message.replace(`{${key}}`, replacements[key]);
+            }
+
+            const existingMessageBox = document.getElementById('custom-message-box');
+            if (existingMessageBox) {
+                existingMessageBox.remove();
+            }
+
+            const messageBox = document.createElement('div');
+            messageBox.id = 'custom-message-box';
+            messageBox.className = 'fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-[1000] p-4';
+            messageBox.innerHTML = `
+                <div class="bg-gray-800 p-8 rounded-lg shadow-xl max-w-sm w-full text-center border-t-4 border-indigo-500">
+                    <h3 class="text-2xl font-bold text-gray-100 mb-4">${title}</h3>
+                    <p class="text-gray-300 mb-6">${message}</p>
+                    <button id="message-box-ok" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-md shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                        OK
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(messageBox);
+
+            document.getElementById('message-box-ok').addEventListener('click', () => {
+                messageBox.remove();
+            });
+        }
+
+        /**
+         * Fetches and displays media for a specific section on Layer 1.
+         * @param {string} type - 'movie' or 'tv'.
+         * @param {string} sectionName - Identifier for the section (e.g., 'now-playing', 'top-rated', 'romance-movies').
+         * @param {number} page - The page number to fetch.
+         * @param {string} [query=''] - Search query, if any.
+         * @param {number} [genreId=null] - Genre ID, if filtering by genre.
+         */
+        async function loadMediaSection(type, sectionName, page = 1, query = '', genreId = null) {
+            const gridElement = document.getElementById(`movie-grid-${sectionName}`);
+            const loadMoreBtn = document.getElementById(`load-more-${sectionName}`);
+            const spinnerElement = document.getElementById(`loading-spinner-${sectionName}`);
+            const noResultsMsg = document.getElementById(`no-results-message-${sectionName}`);
+            const sectionTitleElement = document.getElementById(`section-title-${sectionName}`);
+
+            spinnerElement.classList.remove('hidden');
+            if (page === 1) { // Only clear grid on first page load for a section
+                console.log(`[DEBUG] Clearing grid for section: ${sectionName}`); // Debug log
+                gridElement.innerHTML = '';
+            }
+            noResultsMsg.classList.add('hidden');
+            loadMoreBtn.classList.add('hidden');
+
+            let url = '';
+            let titleText = '';
+
+            if (query) {
+                url = `${TMDB_BASE_URL}${mediaTypeEndpoints[type].search}?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(query)}&page=${page}&language=en`;
+                titleText = `Search Results for "${query}"`; // Specific title for search
+            } else if (genreId) {
+                url = `${TMDB_BASE_URL}${mediaTypeEndpoints.movie.genre}?api_key=${TMDB_API_KEY}&with_genres=${genreId}&page=${page}&language=en`;
+                titleText = TEXT_CONSTANTS.romanceMovies; // Specific for Romance section
+            } else {
+                if (sectionName === 'now-playing' && type === 'movie') {
+                    url = `${TMDB_BASE_URL}${mediaTypeEndpoints.movie.now_playing}?api_key=${TMDB_API_KEY}&page=${page}&language=en`;
+                    titleText = TEXT_CONSTANTS.nowPlayingMovies;
+                } else if (sectionName === 'top-rated' && type === 'movie') {
+                    url = `${TMDB_BASE_URL}${mediaTypeEndpoints.movie.top_rated}?api_key=${TMDB_API_KEY}&page=${page}&language=en`;
+                    titleText = TEXT_CONSTANTS.topRatedMovies;
+                } else if (sectionName === 'romance-movies' && type === 'movie') {
+                    url = `${TMDB_BASE_URL}${mediaTypeEndpoints.movie.genre}?api_key=${TMDB_API_KEY}&with_genres=${fixedMovieGenres.Romance}&page=${page}&language=en`;
+                    titleText = TEXT_CONSTANTS.romanceMovies;
+                } else if (type === 'tv' && sectionName === 'now-playing') { // Using now-playing section for TV series
+                    url = `${TMDB_BASE_URL}${mediaTypeEndpoints.tv.popular}?api_key=${TMDB_API_KEY}&page=${page}&language=en`;
+                    titleText = TEXT_CONSTANTS.popularTvSeries;
+                }
+            }
+
+            console.log(`[DEBUG] loadMediaSection called for section: ${sectionName}, requested page: ${page}`); // Debug log
+            console.log(`[DEBUG] API URL for ${sectionName} (page ${page}): ${url}`); // Debug log
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log(`[DEBUG] Received ${data.results.length} items for ${sectionName} (page ${data.page}). First item: ${data.results[0] ? (data.results[0].title || data.results[0].name) : 'N/A'}`); // Debug log
+
+                if (data.results.length === 0 && page === 1) {
+                    noResultsMsg.classList.remove('hidden');
+                    noResultsMsg.textContent = TEXT_CONSTANTS.noResultsFound;
+                    loadMoreBtn.classList.add('hidden');
+                } else if (data.results.length > 0) {
+                    noResultsMsg.classList.add('hidden');
+                    data.results.forEach(media => {
+                        const mediaCard = document.createElement('div');
+                        mediaCard.className = 'bg-gray-800 rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer';
+                        mediaCard.dataset.mediaId = media.id;
+                        mediaCard.dataset.mediaType = type; // Store media type in dataset
+
+                        const posterPath = media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : `https://placehold.co/500x750/FF0000/FFFFFF?text=${TEXT_CONSTANTS.posterNotAvailable}`;
+                        const titleOrName = media.title || media.name || TEXT_CONSTANTS.titleNotAvailable;
+                        const releaseDateOrFirstAirDate = media.release_date ? media.release_date.substring(0, 4) : (media.first_air_date ? media.first_air_date.substring(0, 4) : TEXT_CONSTANTS.yearNotAvailable);
+
+                        mediaCard.innerHTML = `
+                            <img src="${posterPath}" alt="${titleOrName} Poster" loading="lazy" class="w-full h-auto object-cover rounded-t-lg" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=${TEXT_CONSTANTS.imageError}';">
+                            <div class="p-4 text-center">
+                                <h3 class="text-lg font-semibold text-gray-100 truncate">${titleOrName}</h3>
+                                <p class="text-gray-400 text-sm">${releaseDateOrFirstAirDate}</p>
+                            </div>
+                        `;
+                        gridElement.appendChild(mediaCard);
+                        console.log(`[DEBUG] Added media ID: ${media.id}, Title: ${titleOrName} to section: ${sectionName}, page: ${data.page}`); // Debug log
+
+                        mediaCard.addEventListener('click', () => {
+                            // Adsterra Direct Ad Logic: Open ad on first click for this mediaId
+                            if (!adTriggeredMediaIds.has(media.id)) {
+                                window.open(getNextAdLink(), '_blank', 'noopener noreferrer'); // Added noopener noreferrer
+                                adTriggeredMediaIds.add(media.id); // Mark as triggered
+                                return; 
+                            }
+                            // Update hash instead of direct call to prevent double loading
+                            window.location.hash = `#/media/${type}/${media.id}/${slugify(titleOrName)}`;
+                        });
+                    });
+                }
+
+                if (data.page >= data.total_pages) {
+                    loadMoreBtn.classList.add('hidden');
+                } else {
+                    loadMoreBtn.classList.remove('hidden');
+                }
+
+                pageCounters[sectionName] = data.page; // Update specific page counter
+            } catch (error) {
+                console.error(`Error fetching media for ${sectionName} section:`, error);
+                showMessageBox('errorTitle', 'failedToLoadMedia');
+                loadMoreBtn.classList.add('hidden');
+                noResultsMsg.classList.remove('hidden');
+                noResultsMsg.textContent = TEXT_CONSTANTS.failedToLoadMedia;
+            } finally {
+                spinnerElement.classList.add('hidden');
+            }
+        }
+
+        // Function to fetch and display movie/TV details (Layer 2)
+        async function fetchAndDisplayMediaDetail(mediaId, mediaType, mediaTitleForSlug = '') {
+            showLayer(layer2);
+            document.getElementById('movie-detail-content').classList.add('hidden');
+            loadingSpinnerLayer2.classList.remove('hidden');
+
+            try {
+                // Fetch media details
+                const detailResponse = await fetch(`${TMDB_BASE_URL}${mediaTypeEndpoints[mediaType].detail}${mediaId}?api_key=${TMDB_API_KEY}&language=en`);
+                if (!detailResponse.ok) throw new Error(`HTTP error! status: ${detailResponse.status}`);
+                const media = await detailResponse.json();
+
+                // Update URL hash for uniqueness (only if not already set by handleHashChange)
+                const mediaSlug = slugify(media.title || media.name || TEXT_CONSTANTS.titleNotAvailable);
+                if (window.location.hash !== `#/media/${mediaType}/${media.id}/${mediaSlug}`) {
+                    window.location.hash = `#/media/${mediaType}/${media.id}/${mediaSlug}`;
+                }
+
+                // Fetch media videos (for trailer)
+                const videoResponse = await fetch(`${TMDB_BASE_URL}${mediaTypeEndpoints[mediaType].videos}${mediaId}/videos?api_key=${TMDB_API_KEY}&language=en`);
+                if (!videoResponse.ok) throw new Error(`HTTP error! status: ${videoResponse.status}`);
+                const videosData = await videoResponse.json();
+
+                let trailer = videosData.results.find(vid => vid.type === 'Trailer' && vid.site === 'YouTube');
+                
+                // Fallback: if no specific 'Trailer' type is found, try any YouTube video
+                if (!trailer) {
+                    trailer = videosData.results.find(vid => vid.site === 'YouTube');
+                }
+
+                // Using a relevant movie trailer compilation as fallback if no specific trailer is found
+                const trailerUrl = trailer ? `https://www.youtube.com/embed/${trailer.key}` : 'https://www.youtube.com/embed/DmwYqQki_Ic'; // Changed fallback URL
+
+                // Fetch media credits (for cast and director)
+                const creditsResponse = await fetch(`${TMDB_BASE_URL}${mediaTypeEndpoints[mediaType].credits}${mediaId}/credits?api_key=${TMDB_API_KEY}&language=en`);
+                if (!creditsResponse.ok) throw new Error(`HTTP error! status: ${creditsResponse.status}`);
+                const creditsData = await creditsResponse.json();
+                
+                const director = creditsData.crew.find(person => person.job === 'Director');
+                const directorName = director ? director.name : TEXT_CONSTANTS.notAvailable;
+                const cast = creditsData.cast.slice(0, 5).map(person => person.name).join(', '); // Top 5 cast members
+
+                // Fetch content rating
+                let contentRating = TEXT_CONSTANTS.notAvailable;
+                if (mediaType === 'movie') {
+                    const releaseDatesResponse = await fetch(`${TMDB_BASE_URL}/movie/${mediaId}/release_dates?api_key=${TMDB_API_KEY}`);
+                    if (releaseDatesResponse.ok) {
+                        const releaseDatesData = await releaseDatesResponse.json();
+                        const usRelease = releaseDatesData.results.find(res => res.iso_3166_1 === 'US');
+                        if (usRelease && usRelease.release_dates.length > 0) {
+                            contentRating = usRelease.release_dates[0].certification || TEXT_CONSTANTS.notAvailable;
+                        }
+                    }
+                } else if (mediaType === 'tv') {
+                    const contentRatingsResponse = await fetch(`${TMDB_BASE_URL}/tv/${mediaId}/content_ratings?api_key=${TMDB_API_KEY}`);
+                    if (contentRatingsResponse.ok) {
+                        const contentRatingsData = await contentRatingsResponse.json();
+                        const usRating = contentRatingsData.results.find(res => res.iso_3166_1 === 'US');
+                        if (usRating) {
+                            contentRating = usRating.rating || TEXT_CONSTANTS.notAvailable;
+                        }
+                    }
+                }
+
+                // Prepare duration text
+                let durationText = TEXT_CONSTANTS.notAvailable;
+                if (mediaType === 'movie' && media.runtime) {
+                    const hours = Math.floor(media.runtime / 60);
+                    const minutes = media.runtime % 60;
+                    durationText = `${hours}h ${minutes}m`;
+                } else if (mediaType === 'tv') {
+                    if (media.number_of_seasons && media.number_of_episodes) {
+                        durationText = `${media.number_of_seasons} ${TEXT_CONSTANTS.seasons}, ${TEXT_CONSTANTS.episodes} ${media.number_of_episodes}`;
+                    } else if (media.number_of_seasons) {
+                        durationText = `${media.number_of_seasons} ${TEXT_CONSTANTS.seasons}`;
+                    } else if (media.number_of_episodes) {
+                        durationText = `${media.number_of_episodes} ${TEXT_CONSTANTS.episodes}`;
+                    }
+                }
+
+                // Update currentImdbId
+                currentImdbId = media.imdb_id; // IMDb ID is available for both movies and TV in TMDB details
+
+                // Populate Layer 2 with enhanced details
+                const releaseYear = media.release_date ? media.release_date.substring(0, 4) : (media.first_air_date ? media.first_air_date.substring(0, 4) : TEXT_CONSTANTS.notAvailable);
+                const fullReleaseDate = media.release_date || media.first_air_date || TEXT_CONSTANTS.notAvailable;
+
+                const detailContentHtml = `
+                    <div class="flex flex-col md:flex-row gap-8 mb-8">
+                        <img id="detail-poster" src="${media.poster_path ? `${TMDB_IMAGE_BASE_URL}${media.poster_path}` : `https://placehold.co/500x750/374151/d1d5db?text=${TEXT_CONSTANTS.noPoster}`}" alt="[Gambar Poster Media]" class="w-full md:w-1/3 lg:w-1/4 rounded-lg shadow-md object-cover">
+                        <div class="flex-1">
+                            <h2 id="detail-title" class="text-4xl font-bold text-gray-100 mb-2">${media.title || media.name || TEXT_CONSTANTS.notAvailable}</h2>
+                            <p class="text-gray-400 mb-2">${media.genres.map(g => g.name).join(', ') || TEXT_CONSTANTS.notAvailable}</p>
+                            
+                            <div class="flex items-center gap-4 mb-4">
+                                <p class="text-yellow-500 font-semibold text-lg">⭐ ${media.vote_average ? media.vote_average.toFixed(1) : TEXT_CONSTANTS.notAvailable} / 10</p>
+                                <p class="text-gray-300 text-sm">(${media.vote_count || 0} ${TEXT_CONSTANTS.votes})</p>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-gray-300 text-sm mb-4">
+                                <p><span class="font-semibold">${TEXT_CONSTANTS.year}:</span> ${releaseYear}</p>
+                                <p><span class="font-semibold">${TEXT_CONSTANTS.releaseDate}:</span> ${fullReleaseDate}</p>
+                                <p><span class="font-semibold">${TEXT_CONSTANTS.director}:</span> ${directorName}</p>
+                                <p><span class="font-semibold">${TEXT_CONSTANTS.duration}:</span> ${durationText}</p>
+                                <p><span class="font-semibold">${TEXT_CONSTANTS.contentRating}:</span> ${contentRating}</p>
+                            </div>
+
+                            <p id="detail-cast" class="text-gray-300 text-sm mb-4">Cast: ${cast || TEXT_CONSTANTS.notAvailable}</p>
+                            <p id="detail-plot" class="text-gray-200 leading-relaxed mb-6 text-justify">${media.overview || TEXT_CONSTANTS.plotNotAvailable}</p>
+                        </div>
+                    </div>
+                `;
+                document.getElementById('movie-detail-content').innerHTML = detailContentHtml; // Replace innerHTML
+
+                document.getElementById('detail-trailer').src = trailerUrl;
+
+                // Load similar movies/TV series
+                await loadSimilarMedia(mediaId, mediaType);
+
+            } catch (error) {
+                console.error('Error fetching media details:', error);
+                showMessageBox('errorTitle', 'failedToLoadDetails');
+                // Optionally, go back to layer 1 on error
+                showLayer(layer1);
+                window.location.hash = ''; // Clear hash on error
+            } finally {
+                loadingSpinnerLayer2.classList.add('hidden');
+                document.getElementById('movie-detail-content').classList.remove('hidden');
+            }
+        }
+
+        /**
+         * Fetches and displays similar media.
+         * @param {number} mediaId - The ID of the current media.
+         * @param {string} mediaType - 'movie' or 'tv'.
+         */
+        async function loadSimilarMedia(mediaId, mediaType) {
+            similarMoviesGrid.innerHTML = ''; // Clear previous similar movies
+            loadingSpinnerSimilar.classList.remove('hidden');
+            noSimilarResultsMessage.classList.add('hidden');
+
+            try {
+                const similarUrl = `${TMDB_BASE_URL}${mediaTypeEndpoints[mediaType].similar}${mediaId}/similar?api_key=${TMDB_API_KEY}&language=en&page=1`;
+                const response = await fetch(similarUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+
+                if (data.results.length === 0) {
+                    noSimilarResultsMessage.classList.remove('hidden');
+                    noSimilarResultsMessage.textContent = TEXT_CONSTANTS.noSimilarTitles;
+                } else {
+                    // Ensure only 5 items are displayed for similar movies
+                    data.results.slice(0, 5).forEach(similarMedia => { 
+                        const mediaCard = document.createElement('div');
+                        mediaCard.className = 'bg-gray-800 rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer';
+                        mediaCard.dataset.mediaId = similarMedia.id;
+                        mediaCard.dataset.mediaType = mediaType; // Similar items are of the same type
+                        
+                        const posterPath = similarMedia.poster_path ? `${TMDB_IMAGE_BASE_URL}${similarMedia.poster_path}` : `https://placehold.co/500x750/FF0000/FFFFFF?text=${TEXT_CONSTANTS.posterNotAvailable}`;
+                        const titleOrName = similarMedia.title || similarMedia.name || TEXT_CONSTANTS.titleNotAvailable;
+                        const releaseDateOrFirstAirDate = similarMedia.release_date ? similarMedia.release_date.substring(0, 4) : (similarMedia.first_air_date ? similarMedia.first_air_date.substring(0, 4) : TEXT_CONSTANTS.yearNotAvailable);
+
+                        mediaCard.innerHTML = `
+                            <img src="${posterPath}" alt="${titleOrName} Poster" loading="lazy" class="w-full h-auto object-cover rounded-t-lg" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=${TEXT_CONSTANTS.imageError}';">
+                            <div class="p-4 text-center">
+                                <h3 class="text-lg font-semibold text-gray-100 truncate">${titleOrName}</h3>
+                                <p class="text-gray-400 text-sm">${releaseDateOrFirstAirDate}</p>
+                            </div>
+                        `;
+                        similarMoviesGrid.appendChild(mediaCard);
+
+                        mediaCard.addEventListener('click', () => {
+                            // Adsterra Direct Ad Logic for similar items
+                            if (!adTriggeredMediaIds.has(similarMedia.id)) {
+                                window.open(getNextAdLink(), '_blank', 'noopener noreferrer');
+                                adTriggeredMediaIds.add(similarMedia.id);
+                                return; 
+                            }
+                            // Update hash instead of direct call to prevent double loading
+                            window.location.hash = `#/media/${mediaType}/${similarMedia.id}/${slugify(titleOrName)}`;
+                        });
+                    });
+                }
+            } catch (error) {
+                console.error('Error fetching similar media:', error);
+                noSimilarResultsMessage.classList.remove('hidden');
+                noSimilarResultsMessage.textContent = TEXT_CONSTANTS.failedToLoadMedia;
+            } finally {
+                loadingSpinnerSimilar.classList.add('hidden');
+            }
+        }
+
+        /**
+         * Loads the streaming player iframe with the appropriate URL.
+         * @param {string} source - The streaming source type ('vidsrc.me', 'vidsrc.to-imdb', 'vidsrc.to-tmdb').
+         */
+        function loadStreamingPlayer(source) {
+            if (!currentMediaId) {
+                showMessageBox('errorTitle', 'noMediaSelected');
+                return;
+            }
+
+            showLayer(layer3);
+            document.getElementById('streaming-player-container').classList.add('hidden');
+            loadingSpinnerLayer3.classList.remove('hidden');
+
+            let streamingUrl = '';
+            if (source === 'vidsrc.me') {
+                streamingUrl = `https://vidsrc.me/embed/${currentMediaId}`;
+            } else if (source === 'vidsrc.to-imdb') {
+                if (!currentImdbId) {
+                    showMessageBox('errorTitle', 'imdbIdNotAvailable');
+                    loadingSpinnerLayer3.classList.add('hidden');
+                    return;
+                }
+                streamingUrl = `https://vidsrc.to/embed/${currentMediaType === 'movie' ? 'movie' : 'tv'}?imdb=${currentImdbId}`;
+            } else if (source === 'vidsrc.to-tmdb') {
+                // vidsrc.to also supports TMDB IDs directly in the path
+                streamingUrl = `https://vidsrc.to/embed/${currentMediaType === 'movie' ? 'movie' : 'tv'}/${currentMediaId}`;
+            }
+
+            document.getElementById('streaming-player').src = streamingUrl;
+            document.getElementById('streaming-player').onload = () => {
+                loadingSpinnerLayer3.classList.add('hidden');
+                document.getElementById('streaming-player-container').classList.remove('hidden');
+            };
+            // Fallback to hide spinner after a delay if onload event doesn't fire for some reason
+            setTimeout(() => {
+                loadingSpinnerLayer3.classList.add('hidden');
+                document.getElementById('streaming-player-container').classList.remove('hidden');
+            }, 3000); // 3-second delay
+        }
+
+
+        // Function to handle URL hash changes
+        async function handleHashChange() {
+            const hash = window.location.hash;
+
+            if (hash.startsWith('#/media/')) {
+                const parts = hash.split('/');
+                if (parts.length >= 4) { // e.g., #/media/movie/123/title-slug
+                    const type = parts[2];
+                    const id = parts[3];
+                    // The slug (parts[4]) is optional for loading, but good for SEO.
+
+                    if ((type === 'movie' || type === 'tv') && !isNaN(id)) {
+                        // Prevent redundant calls if already on the same detail page
+                        if (currentMediaId === id && currentMediaType === type && layer2.style.display === 'block') {
+                            console.log("[DEBUG] Already on this detail page, preventing redundant load.");
+                            return;
+                        }
+                        currentMediaId = id;
+                        currentMediaType = type;
+                        // Hide all sections on Layer 1 when viewing details
+                        document.getElementById('romance-movies-section').style.display = 'none';
+                        document.getElementById('now-playing-section').style.display = 'none';
+                        document.getElementById('top-rated-section').style.display = 'none';
+                        await fetchAndDisplayMediaDetail(id, type);
+                    } else {
+                        // Invalid hash, revert to home
+                        console.log("[DEBUG] Invalid media hash, loading all sections."); // Debug log
+                        loadAllSections(); // Reload all sections
+                        showLayer(layer1);
+                        window.location.hash = ''; // Clear hash
+                    }
+                }
+            } else if (hash === '#/movies') {
+                console.log("[DEBUG] Handling #/movies hash."); // Debug log
+                currentMediaType = 'movie';
+                loadAllSections(); // This will reset page counters and load movie sections
+                showLayer(layer1);
+            } else if (hash === '#/tv') {
+                console.log("[DEBUG] Handling #/tv hash."); // Debug log
+                currentMediaType = 'tv';
+                // Hide all movie sections and genre buttons
+                document.getElementById('romance-movies-section').style.display = 'none';
+                document.getElementById('top-rated-section').style.display = 'none';
+                document.getElementById('now-playing-section').style.display = 'block'; // Use now-playing section for TV series
+                
+                // Reset page counter for now-playing when switching to TV
+                pageCounters['now-playing'] = 1; 
+                loadMediaSection('tv', 'now-playing', 1);
+                document.getElementById('section-title-now-playing').textContent = TEXT_CONSTANTS.popularTvSeries; // Update title
+                showLayer(layer1);
+            } else if (hash === '#/home-seo') { // New hash for Layer 4
+                console.log("[DEBUG] Handling #/home-seo hash.");
+                showLayer(layer4);
+                loadSeoContent(); // Call loadSeoContent when navigating to Layer 4
+            }
+            else {
+                // Default: empty hash or unrecognized hash, load movies home
+                console.log("[DEBUG] Handling empty or unrecognized hash, loading all sections (default)."); // Debug log
+                currentMediaType = 'movie'; // Default to movies
+                loadAllSections();
+                showLayer(layer1);
+            }
+        }
+
+        // Function to load all sections on Layer 1
+        function loadAllSections() {
+            console.log("[DEBUG] loadAllSections called."); // Debug log
+            // Reset page counters for all sections
+            for (const key in pageCounters) {
+                pageCounters[key] = 1; // Ensure they are reset to 1
+            }
+            currentSearchQuery = ''; // Clear search query when returning to home view
+            searchInput.value = ''; // Clear search input field
+
+            // Show all movie sections
+            document.getElementById('romance-movies-section').style.display = 'block';
+            document.getElementById('now-playing-section').style.display = 'block';
+            document.getElementById('top-rated-section').style.display = 'block';
+
+            // Load content for each section
+            loadMediaSection('movie', 'romance-movies', 1, '', fixedMovieGenres.Romance); // Pass Romance genre ID
+            loadMediaSection('movie', 'now-playing', 1);
+            loadMediaSection('movie', 'top-rated', 1);
+        }
+
+        // Event Listeners for Load More Buttons
+        document.getElementById('load-more-romance-movies').addEventListener('click', () => {
+            console.log("[DEBUG] Load More Romance Movies clicked."); // Debug log
+            loadMediaSection('movie', 'romance-movies', pageCounters['romance-movies'] + 1, '', fixedMovieGenres.Romance);
+        });
+        document.getElementById('load-more-now-playing').addEventListener('click', () => {
+            console.log("[DEBUG] Load More Now Playing clicked."); // Debug log
+            loadMediaSection('movie', 'now-playing', pageCounters['now-playing'] + 1);
+        });
+        document.getElementById('load-more-top-rated').addEventListener('click', () => {
+            console.log("[DEBUG] Load More Top Rated clicked."); // Debug log
+            loadMediaSection('movie', 'top-rated', pageCounters['top-rated'] + 1);
+        });
+
+
+        backToListButton.addEventListener('click', () => {
+            console.log("[DEBUG] Back to list button clicked."); // Debug log
+            showLayer(layer1);
+            window.location.hash = ''; // Clear hash when going back to list
+            // loadAllSections(); // This will be called by handleHashChange due to hash change
+        });
+
+        backToDetailButton.addEventListener('click', () => {
+            console.log("[DEBUG] Back to detail button clicked."); // Debug log
+            showLayer(layer2);
+            // Stop streaming when going back to details
+            document.getElementById('streaming-player').src = '';
+            document.getElementById('streaming-player-container').classList.add('hidden');
+            // No need to change hash here, as we are navigating within the detail view context
+        });
+
+        backFromSeoButton.addEventListener('click', () => { // New event listener for Layer 4 back button
+            console.log("[DEBUG] Back from SEO button clicked.");
+            showLayer(layer1);
+            window.location.hash = ''; // Clear hash when going back to list
+        });
+
+        stream1Button.addEventListener('click', () => {
+            if (!adTriggeredMediaIds.has(currentMediaId)) {
+                window.open(getNextAdLink(), '_blank', 'noopener noreferrer');
+                adTriggeredMediaIds.add(currentMediaId);
+                return;
+            }
+            loadStreamingPlayer('vidsrc.me');
+        });
+
+        stream2Button.addEventListener('click', () => {
+            if (!adTriggeredMediaIds.has(currentMediaId)) {
+                window.open(getNextAdLink(), '_blank', 'noopener noreferrer');
+                adTriggeredMediaIds.add(currentMediaId);
+                return;
+            }
+            loadStreamingPlayer('vidsrc.to-imdb');
+        });
+
+        stream3Button.addEventListener('click', () => {
+            if (currentMediaId) {
+                window.open(getNextAdLink(), '_blank', 'noopener noreferrer'); // Use rotating link for Adsterra
+            } else {
+                showMessageBox('errorTitle', 'noMediaSelected');
+            }
+        });
+
+        stream4Button.addEventListener('click', () => {
+            if (!adTriggeredMediaIds.has(currentMediaId)) {
+                window.open(getNextAdLink(), '_blank', 'noopener noreferrer');
+                adTriggeredMediaIds.add(currentMediaId);
+                return;
+            }
+            loadStreamingPlayer('vidsrc.to-tmdb'); // Now uses TMDB ID for vidsrc.to
+        });
+
+        searchButton.addEventListener('click', () => {
+            const query = searchInput.value.trim();
+            if (query) {
+                currentGenreId = null; // Clear genre filter
+                currentSearchQuery = query;
+                // Load search results into the now-playing section, clearing others
+                document.getElementById('romance-movies-section').style.display = 'none';
+                document.getElementById('top-rated-section').style.display = 'none';
+                document.getElementById('now-playing-section').style.display = 'block'; // Ensure now-playing is visible
+                loadMediaSection(currentMediaType, 'now-playing', 1, query); // Load search results into now-playing grid
+                document.getElementById('section-title-now-playing').textContent = `Search Results for "${query}"`; // Update title for search
+            } else {
+                currentSearchQuery = '';
+                // If search input is empty, revert to showing all sections
+                loadAllSections();
+            }
+        });
+
+        searchInput.addEventListener('keyup', (event) => {
+            if (event.key === 'Enter') {
+                searchButton.click();
+            }
+        });
+
+        // Initial load when window loads
+        window.onload = () => {
+            // Set current year in footer
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+            
+            // Set language to English by default (no selector)
+            document.documentElement.lang = 'en'; // Set HTML lang attribute
+
+            handleHashChange(); // Call on load to handle deep linking
+        };
+
+        // Add event listener for hash changes
+        window.addEventListener('hashchange', handleHashChange);
+
+        // Handle navigation buttons (Movies/TV Series)
+        navHomeButton.addEventListener('click', () => { // New Home button event listener
+            const buttonId = 'nav-home-button'; // Unique ID for this button's ad tracking
+            if (!homeButtonAdTriggered.has(buttonId)) {
+                window.open(getNextAdLink(), '_blank', 'noopener noreferrer');
+                homeButtonAdTriggered.add(buttonId);
+                return; // Stop here for the first click (ad only)
+            }
+            // Subsequent clicks: navigate to Layer 4 (SEO content)
+            console.log("[DEBUG] Navigating to Home/SEO via nav-home-button (subsequent click).");
+            window.location.hash = '#/home-seo'; // This will trigger handleHashChange to load Layer 4
+        });
+
+        navMoviesButton.addEventListener('click', () => {
+            console.log("[DEBUG] Navigating to Movies home via hash change.");
+            currentSearchQuery = ''; // Clear search
+            searchInput.value = ''; // Clear search input
+            currentGenreId = null; // Clear genre filter
+            window.location.hash = '#/movies'; // Just set hash, handleHashChange will do the rest
+        });
+
+        navTvSeriesButton.addEventListener('click', () => {
+            console.log("[DEBUG] Navigating to TV Series home via hash change.");
+            currentSearchQuery = ''; // Clear search
+            searchInput.value = ''; // Clear search input
+            currentGenreId = null; // Clear genre filter
+            window.location.hash = '#/tv'; // Just set hash, handleHashChange will do the rest
+        });
+
+        // Event listener for static movie cards in Layer 3 (UPDATED)
+        staticMovieGrid.addEventListener('click', (event) => {
+            const clickedCard = event.target.closest('.static-movie-card');
+            if (clickedCard) {
+                const mediaId = clickedCard.dataset.mediaId;
+                const mediaType = clickedCard.dataset.mediaType;
+                const mediaTitle = clickedCard.querySelector('h3').textContent;
+                
+                if (mediaId && mediaType) {
+                    // Handle 'site' media type specifically
+                    if (mediaType === 'site') {
+                        // If it's the Nineva Cine card, just open the ad and prevent further action for this card type
+                        if (!staticAdTriggeredMediaIds.has(mediaId)) {
+                            window.open(getNextAdLink(), '_blank', 'noopener noreferrer');
+                            staticAdTriggeredMediaIds.add(mediaId);
+                        }
+                        return; // Stop further processing for 'site' type
+                    }
+
+                    if (!staticAdTriggeredMediaIds.has(mediaId)) {
+                        // First click for non-site media: Open ad
+                        window.open(getNextAdLink(), '_blank', 'noopener noreferrer');
+                        staticAdTriggeredMediaIds.add(mediaId);
+                    } else {
+                        // Subsequent click for non-site media: Navigate to details
+                        // Update hash instead of direct call to prevent double loading
+                        window.location.hash = `#/media/${mediaType}/${mediaId}/${slugify(mediaTitle)}`;
+                    }
+                }
+            }
+        });
+
+        // Function to load the SEO content into Layer 4
+        function loadSeoContent() {
+            const seoContentDiv = document.getElementById('seo-content');
+            seoContentDiv.innerHTML = `
+                <h1>Welcome to Nineva Cine: Your Ultimate Free Streaming Destination</h1>
+                <img id="seo-banner-image" src="https://live.staticflickr.com/65535/54636134544_2e2fb234c8_b.jpg" alt="[Gambar Spanduk Nineva Cine]" class="w-full h-auto object-cover mb-6 rounded-lg cursor-pointer">
+                <p>In an era where entertainment is at our fingertips, finding a reliable and free streaming platform can be a game-changer. Look no further than <strong>Nineva Cine</strong>, your premier online destination for thousands of free movies and TV series. We are dedicated to providing an unparalleled streaming experience, offering a vast library of content in high-definition quality, all without the need for subscriptions, hidden fees, or annoying sign-ups. Dive into the world of unlimited entertainment and discover why Nineva Cine is quickly becoming the go-to choice for viewers across the United Kingdom and beyond.</p>
+
+                <h2>The Evolution of Free Online Streaming: Why Nineva Cine Stands Out</h2>
+                <p>The landscape of online entertainment has evolved dramatically over the past decade. From traditional cable TV to paid streaming giants, consumers now have more choices than ever. However, the rising costs of multiple subscriptions can quickly add up, leaving many searching for viable, free alternatives. This is where platforms like Nineva Cine step in, democratizing access to a world of cinematic and television content.</p>
+                <h3>Action & Adventure: Get Your Adrenaline Fix</h3>
+                <p>For those who crave excitement, our action and adventure categories are brimming with high-octane thrillers, epic quests, and superhero sagas. Experience explosive car chases, intense fight sequences, and breathtaking special effects, all from the comfort of your home. Discover titles that will keep you on the edge of your seat, from espionage thrillers to fantastical journeys.</p>
+                <h3>Comedy: Laugh Out Loud</h3>
+                <p>Need a good laugh? Our comedy section offers a wide array of films designed to lighten your mood. From witty romantic comedies to slapstick farces and dark satires, you'll find endless opportunities for amusement. Gather your friends and family for a night of shared laughter with our diverse comedic offerings.</p>
+                <h3>Drama: Explore Human Emotions</h3>
+                <p>Delve into the complexities of the human experience with our extensive drama collection. These films offer compelling narratives, powerful performances, and often explore profound themes. Whether you prefer historical dramas, legal thrillers, or poignant character studies, our drama category provides rich storytelling that resonates deeply.</p>
+                <h3>Horror & Thriller: A Frighteningly Good Time</h3>
+                <p>If you enjoy a good scare or a suspenseful plot, our horror and thriller genres are perfect for you. From psychological thrillers that mess with your mind to supernatural horrors that make you jump, prepare for an unforgettable viewing experience. Our collection includes both modern masterpieces and cult classics that will keep you awake at night.</p>
+                <h3>Sci-Fi & Fantasy: Journey Beyond Imagination</h3>
+                <p>Escape to other worlds and explore futuristic possibilities with our science fiction and fantasy films. Witness groundbreaking visual effects, innovative concepts, and imaginative storytelling. From dystopian futures to magical realms, these genres push the boundaries of creativity and offer truly immersive experiences.</p>
+                <h3>Romance: For the Heart</h3>
+                <p>Indulge in heartwarming tales of love, passion, and relationships with our romance movie selection. Whether you prefer classic love stories, contemporary romantic comedies, or intense romantic dramas, our collection is designed to stir your emotions and leave you feeling uplifted.</p>
+
+                <h2>Binge-Worthy TV Series: Endless Entertainment</h2>
+                <p>Beyond movies, Nineva Cine also boasts an impressive collection of TV series, allowing you to binge-watch your favorite shows or discover new obsessions. Our TV series library includes:</p>
+                <ul>
+                    <li><strong>Popular Series:</strong> Catch up on the latest seasons of critically acclaimed shows and fan favorites.</li>
+                    <li><strong>Classic TV:</strong> Revisit timeless sitcoms, dramas, and sci-fi series that have shaped television history.</li>
+                    <li><strong>International Hits:</strong> Explore captivating series from around the globe, expanding your viewing horizons.</li>
+                    <li><strong>Diverse Genres:</strong> From crime procedurals to fantasy epics, animated adventures to gripping documentaries, our TV series selection mirrors the diversity of our movie library.</li>
+                </ul>
+                <p>With new episodes and series added regularly, you'll never run out of engaging content to watch. Our platform makes it easy to track your progress and pick up exactly where you left off.</p>
+
+                <h2>Seamless Streaming Experience: Technology at Your Service</h2>
+                <p>We understand that a great streaming experience goes beyond just content. That's why Nineva Cine is built on robust technology designed for seamless, uninterrupted viewing:</p>
+                <ul>
+                    <li><strong>Fast Loading Times:</strong> Minimize buffering and start watching your chosen title almost instantly.</li>
+                    <li><strong>Adaptive Streaming:</strong> Our player adjusts video quality based on your internet connection, ensuring smooth playback even with varying bandwidth.</li>
+                    <li><strong>Intuitive Player Controls:</strong> Easy-to-use controls for play, pause, volume, and full-screen mode enhance your viewing comfort.</li>
+                    <li><strong>Regular Updates:</strong> Our technical team continuously works to improve the platform, fix bugs, and enhance performance, ensuring a cutting-edge streaming service.</li>
+                </ul>
+
+                <h2>Safety and Accessibility: Your Peace of Mind</h2>
+                <p>Your safety and privacy are paramount at Nineva Cine. We strive to provide a secure environment for your entertainment:</p>
+                <ul>
+                    <li><strong>No Registration Required:</strong> Enjoy content without the need to create an account, protecting your personal information.</li>
+                    <li><strong>Minimal Ads:</strong> While we rely on ads to keep our service free, we aim to keep them as unobtrusive as possible, ensuring they don't significantly disrupt your viewing.</li>
+                    <li><strong>Mobile-Friendly Design:</strong> Our website is fully responsive, adapting perfectly to any screen size, from smartphones to large desktop monitors. This means you can enjoy your favorite movies and shows on the go, anytime, anywhere.</li>
+                </ul>
+
+                <h2>How to Get Started with Nineva Cine</h2>
+                <p>Getting started with Nineva Cine is incredibly simple. Follow these easy steps to begin your free streaming journey:</p>
+                <ol>
+                    <li><strong>Visit Our Website:</strong> Navigate to 123movies-uk.pages.dev in your web browser.</li>
+                    <li><strong>Browse or Search:</strong> Use our intuitive search bar to find specific titles or explore our categories and curated lists.</li>
+                    <li><strong>Select Your Content:</strong> Click on the movie or TV series you wish to watch.</li>
+                    <li><strong>Start Streaming:</strong> Choose a streaming server (Stream 1 or Stream 2) and enjoy your free entertainment!</li>
+                </ol>
+                <p>It's that easy! No complicated sign-ups, no credit card details, just pure, unadulterated entertainment.</p>
+
+                <h2>Beyond Streaming: The Nineva Cine Community</h2>
+                <p>While our primary focus is on providing high-quality free streaming, we also aim to foster a community of movie and TV enthusiasts. Stay tuned for potential future features that could include user reviews, ratings, and personalized recommendations, further enhancing your experience and connecting you with fellow viewers.</p>
+
+                <h2>Why Choose Nineva Cine Over Paid Services?</h2>
+                <p>In a market dominated by subscription-based streaming services, you might wonder why Nineva Cine is a compelling alternative. Here’s why:</p>
+                <ul>
+                    <li><strong>Cost Savings:</strong> Eliminate multiple monthly subscriptions and save a significant amount of money.</li>
+                    <li><strong>Extensive Library:</strong> Access a diverse range of content that might not be available on any single paid platform.</li>
+                    <li><strong>No Commitments:</strong> Enjoy flexibility without long-term contracts or cancellation hassles.</li>
+                    <li><strong>Discover New Content:</strong> Our constantly updated library means you’ll always find something new to watch, from hidden gems to popular hits.</li>
+                </ul>
+
+                <h2>Future of Nineva Cine</h2>
+                <p>We are continuously working to expand our content library, improve streaming quality, and enhance the user experience. Our commitment is to remain a leading free streaming platform, adapting to the evolving needs of our audience and the digital landscape. We value your feedback and are always looking for ways to make Nineva Cine even better.</p>
+
+                <h2>Conclusion: Your Gateway to Free Entertainment</h2>
+                <p>Nineva Cine is more than just a streaming site; it's a gateway to a world of free, high-quality entertainment. With an ever-growing collection of movies and TV series, a user-friendly interface, and a commitment to seamless streaming, we invite you to explore our platform. Say goodbye to subscription fees and hello to unlimited entertainment. Start watching today and experience the best of online streaming, completely free!</p>
+            `;
+
+            // Add event listener to the image after it's in the DOM
+            const seoBannerImage = document.getElementById('seo-banner-image');
+            if (seoBannerImage) {
+                seoBannerImage.addEventListener('click', () => {
+                    const imageId = 'seo-banner-image'; // Unique ID for this image's ad tracking
+                    if (!layer4ImageAdTriggered.has(imageId)) {
+                        window.open(getNextAdLink(), '_blank', 'noopener noreferrer');
+                        layer4ImageAdTriggered.add(imageId);
+                        return; // Stop here for the first click (ad only)
+                    }
+                    // Subsequent clicks: navigate to Layer 1 (movies home)
+                    console.log("[DEBUG] Navigating to Home/Movies via Layer 4 image (subsequent click).");
+                    window.location.hash = '#/movies'; // This will trigger handleHashChange to load movies
+                });
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+# robots.txt for Nineva Cine
+
+User-agent: *
+Allow: /
+
+Sitemap: https://nineva-cine.pages.dev/sitemap.xml

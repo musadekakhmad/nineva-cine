@@ -209,7 +209,7 @@
             background-clip: text;
             color: transparent; /* Makes text color transparent for gradient to show */
             display: inline-block; /* Important for background-clip to work correctly */
-            font-size: 52px; /* Changed from 5xl (3rem) to 52px */
+            font-size: 56px; /* Changed from 52px to 56px */
         }
 
         /* FIX: Ensures detail title is visible in Blogger */
@@ -609,7 +609,6 @@
                 <!-- SEO content will be injected here by JavaScript -->
             </div>
         </section>
-
     </main>
 
     <!-- Footer -->
@@ -617,9 +616,7 @@
         <div class="container mx-auto px-4">
             <p>&copy; <span id="current-year"></span> Nineva Cine. All rights reserved.</p>
             <p class="mt-2">
-                <a href="#" class="hover:text-white transition-colors duration-200">Privacy Policy</a> | 
-                <a href="#" class="hover:text-white transition-colors duration-200">Terms of Service</a> | 
-                <a href="#" class="hover:text-white transition-colors duration-200">Contact Us</a>
+                <a href="#" class="hover:text-white transition-colors duration-200">Privacy Policy</a> | <a href="#" class="hover:text-white transition-colors duration-200">Terms of Service</a> | <a href="#" class="hover:text-white transition-colors duration-200">Contact Us</a>
             </p>
         </div>
     </footer>
@@ -628,8 +625,8 @@
         // TMDB API Key
         const TMDB_API_KEY = '92d8deed10d8735da58f6777deee8a74';
         const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
-        const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'; 
-        const TMDB_PROFILE_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w185'; 
+        const TMDB_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500';
+        const TMDB_PROFILE_IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w185';
 
         // Page counters for each section
         const pageCounters = {
@@ -640,8 +637,8 @@
         };
 
         let currentSearchQuery = '';
-        let currentGenreId = null; 
-        let currentMediaId = null; 
+        let currentGenreId = null;
+        let currentMediaId = null;
         let currentImdbId = null;
         let currentMediaType = 'movie'; // Default: 'movie'
 
@@ -677,27 +674,29 @@
         // New Set for Layer 4 image ad tracking
         const layer4ImageAdTriggered = new Set();
 
+
         // DOM Elements
         const layer1 = document.getElementById('layer-1');
         const layer2 = document.getElementById('layer-2');
         const layer3 = document.getElementById('layer-3');
         const layer4 = document.getElementById('layer-4'); // New Layer 4
+
         const backToListButton = document.getElementById('back-to-list-button');
         const backToDetailButton = document.getElementById('back-to-detail-button');
         const backFromSeoButton = document.getElementById('back-from-seo-button'); // New back button for Layer 4
+
         const stream1Button = document.getElementById('stream-1-button');
-        const stream2Button = document.getElementById('stream-2-button'); 
+        const stream2Button = document.getElementById('stream-2-button');
         const stream3Button = document.getElementById('stream-3-button');
         const stream4Button = document.getElementById('stream-4-button');
+
         const staticMovieGrid = document.getElementById('static-movie-grid'); // Get the static movie grid container
         const similarMoviesGrid = document.getElementById('similar-movies-grid'); // Get the similar movies grid container
         const loadingSpinnerSimilar = document.getElementById('loading-spinner-similar');
         const noSimilarResultsMessage = document.getElementById('no-similar-results-message');
 
-
         const searchInput = document.getElementById('search-input');
         const searchButton = document.getElementById('search-button');
-
         const loadingSpinnerLayer2 = document.getElementById('loading-spinner-layer2');
         const loadingSpinnerLayer3 = document.getElementById('loading-spinner-layer3');
 
@@ -797,6 +796,17 @@
                 similar: '/tv/' // For similar TV series
             }
         };
+
+        // Hardcoded recommended movies for when no similar titles are found
+        const recommendedFallbackMovies = [
+            { id: 67308, title: '3-D Sex and Zen: Extreme Ecstasy', release_date: '2011-04-14', poster_path: 'https://image.tmdb.org/t/p/w300/jjADiLOmCoXoVldQYrNR9bdAWA0.jpg' },
+            { id: 575299, title: 'Fidelity', release_date: '2019-09-06', poster_path: 'https://image.tmdb.org/t/p/w300/kDaRVADrrbwNSGzCvU4AroEa6h1.jpg' },
+            { id: 14365, title: 'Killing Me Softly', release_date: '2002-03-29', poster_path: 'https://image.tmdb.org/t/p/w300/pgfFJw7mqAmJdZizrJ6oOK0ejOZ.jpg' },
+            { id: 1180449, title: 'They Are Mine', release_date: '2023-10-26', poster_path: 'https://image.tmdb.org/t/p/w300/66kzlgGMp9lKUiBjjPPYG0r8Z03.jpg' },
+            { id: 12225, title: 'Cashback', release_date: '2006-09-08', poster_path: 'https://image.tmdb.org/t/p/w300/juTJZCgNwcEeKtrxC6EygC2mKfJ.jpg' },
+            { id: 48650, title: 'Room in Rome', release_date: '2010-03-19', poster_path: 'https://image.tmdb.org/t/p/w300/qQ8ithmufWYz0OzJbE2YuAn3Qaj.jpg' }
+        ];
+
 
         /**
          * Converts text to a URL-friendly slug format.
@@ -1130,11 +1140,45 @@
                 const data = await response.json();
 
                 if (data.results.length === 0) {
+                    // If no similar titles found, display hardcoded recommendations
                     noSimilarResultsMessage.classList.remove('hidden');
-                    noSimilarResultsMessage.textContent = TEXT_CONSTANTS.noSimilarTitles;
+                    noSimilarResultsMessage.textContent = TEXT_CONSTANTS.noSimilarTitles; // Keep original message
+                    
+                    // Populate with recommended fallback movies
+                    recommendedFallbackMovies.forEach(recMedia => { 
+                        const mediaCard = document.createElement('div');
+                        mediaCard.className = 'bg-gray-800 rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer';
+                        mediaCard.dataset.mediaId = recMedia.id;
+                        mediaCard.dataset.mediaType = 'movie'; // Assuming fallback are all movies
+                        
+                        const posterPath = recMedia.poster_path ? `${recMedia.poster_path}` : `https://placehold.co/500x750/FF0000/FFFFFF?text=${TEXT_CONSTANTS.posterNotAvailable}`;
+                        const titleOrName = recMedia.title || recMedia.name || TEXT_CONSTANTS.titleNotAvailable;
+                        const releaseDateOrFirstAirDate = recMedia.release_date ? recMedia.release_date.substring(0, 4) : (recMedia.first_air_date ? recMedia.first_air_date.substring(0, 4) : TEXT_CONSTANTS.yearNotAvailable);
+
+                        mediaCard.innerHTML = `
+                            <img src="${posterPath}" alt="${titleOrName} Poster" loading="lazy" class="w-full h-auto object-cover rounded-t-lg" onerror="this.src='https://placehold.co/300x450/FF0000/FFFFFF?text=${TEXT_CONSTANTS.imageError}';">
+                            <div class="p-4 text-center">
+                                <h3 class="text-lg font-semibold text-gray-100 truncate">${titleOrName}</h3>
+                                <p class="text-gray-400 text-sm">${releaseDateOrFirstAirDate}</p>
+                            </div>
+                        `;
+                        similarMoviesGrid.appendChild(mediaCard);
+
+                        mediaCard.addEventListener('click', () => {
+                            // Adsterra Direct Ad Logic for similar items
+                            if (!adTriggeredMediaIds.has(recMedia.id)) {
+                                window.open(getNextAdLink(), '_blank', 'noopener noreferrer');
+                                adTriggeredMediaIds.add(recMedia.id);
+                                return; 
+                            }
+                            // Update hash instead of direct call to prevent double loading
+                            window.location.hash = `#/media/movie/${recMedia.id}/${slugify(titleOrName)}`;
+                        });
+                    });
+
                 } else {
-                    // Ensure only 5 items are displayed for similar movies
-                    data.results.slice(0, 5).forEach(similarMedia => { 
+                    // Ensure only 6 items are displayed for similar movies (changed from 5 to 6)
+                    data.results.slice(0, 6).forEach(similarMedia => { 
                         const mediaCard = document.createElement('div');
                         mediaCard.className = 'bg-gray-800 rounded-lg shadow-md overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-xl cursor-pointer';
                         mediaCard.dataset.mediaId = similarMedia.id;
